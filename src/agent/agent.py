@@ -95,14 +95,7 @@ Final Answer: <nội dung phản hồi hoàn chỉnh cho người dùng dựa tr
             # Append LLM's response to scratchpad
             scratchpad += f"\n{content}"
             
-            # 1. Check if the LLM reached a Final Answer
-            if "Final Answer:" in content:
-                final_answer_match = re.search(r"Final Answer:\s*(.*)", content, re.DOTALL)
-                if final_answer_match:
-                    final_answer = final_answer_match.group(1).strip()
-                    break
-            
-            # 2. Check if the LLM chose to take an Action
+            # 1. Check if the LLM chose to take an Action
             action_match = re.search(r"Action:\s*(\w+)\((.*)\)", content)
             if action_match:
                 tool_name = action_match.group(1).strip()
@@ -136,6 +129,13 @@ Final Answer: <nội dung phản hồi hoàn chỉnh cho người dùng dựa tr
                 
                 # Feed the Observation back into the scratchpad
                 scratchpad += f"\nObservation: {observation}"
+            
+            # 2. Check if the LLM reached a Final Answer (ONLY if no Action was taken in this step)
+            elif "Final Answer:" in content:
+                final_answer_match = re.search(r"Final Answer:\s*(.*)", content, re.DOTALL)
+                if final_answer_match:
+                    final_answer = final_answer_match.group(1).strip()
+                    break
             else:
                 # If no Action and no Final Answer, prompt LLM to proceed
                 scratchpad += "\nObservation: Please take an Action using the format 'Action: tool_name(args)' or provide your 'Final Answer:'."

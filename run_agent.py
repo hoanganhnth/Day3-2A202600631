@@ -36,7 +36,8 @@ def run_agent_test():
         "2. Sử dụng các từ khóa đó để gợi ý cho tôi các nhóm Facebook/cộng đồng phù hợp nhất để đăng bài marketing.\n"
         "3. Viết 1 bài viết chia sẻ kinh nghiệm tự học tiếng Anh giao tiếp (dạng story post) nhắm đến đối tượng sinh viên để quảng bá khéo léo cho SpeakFlow.\n"
         "4. Lên lịch đăng bài viết đó vào lúc 8h tối nay trên nhóm phù hợp nhất tìm được ở bước 2.\n"
-        "5. Trả về kết quả phân tích, bài viết và xác nhận lịch đăng bài."
+        "5. Lấy dữ liệu phân tích hiệu quả (analytics) của bài đăng trước đó có ID là 'POST-999' để báo cáo CTR.\n"
+        "6. Trả về kết quả phân tích sản phẩm, gợi ý group, nội dung bài viết mới, xác nhận lịch đăng bài mới và báo cáo hiệu quả bài cũ."
     )
     
     print("\n" + "="*50)
